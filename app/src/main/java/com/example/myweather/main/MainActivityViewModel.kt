@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    //  private val repository: WeatherRepository,
+
     private val useCase: WeatherUseCase
 
 ) : ViewModel() {

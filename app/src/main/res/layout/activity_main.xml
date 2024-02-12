@@ -27,14 +27,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/location"
-                android:textSize="26sp" />
+                style="@style/TextTheme.Semi_Bigger" />
 
             <TextView
                 android:id="@+id/text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Updated at: 11.02.2024 19:47 PM"
-                android:textSize="12dp" />
+                style="@style/TextTheme.Smaller" />
 
 
         </LinearLayout>
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Antalya"
-                android:textSize="20sp">
+                style="@style/TextTheme.Default">
 
             </TextView>
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="17C°"
-                android:textSize="90sp">
+                android:textSize="80sp">
 
             </TextView>
 
@@ -75,7 +75,8 @@
                     android:id="@+id/minTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Min Temp: 13°C"></TextView>
+                    android:text="Min Temp: 13°C"
+                    style="TextTheme.Semi_Smallest"/>
 
                 <Space
                     android:layout_width="50dp"
@@ -87,7 +88,8 @@
                     android:id="@+id/maxTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Max Temp: 25°C"></TextView>
+                    android:text="Max Temp: 25°C"
+                    style="TextTheme.Semi_Smallest" />
 
             </LinearLayout>
 
@@ -133,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sunrise"
-                        android:textSize="12sp">
+                        style="@style/TextTheme.Smaller">
 
                     </TextView>
 
@@ -142,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5.30am"
-                        android:textSize="14sp">
+                        style="@style/TextTheme.Semi_Smaller">
 
                     </TextView>
 
@@ -179,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sunset"
-                        android:textSize="12sp">
+                        style="@style/TextTheme.Smaller">
 
                     </TextView>
 
@@ -188,7 +190,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5.30am"
-                        android:textSize="14sp">
+                        style="@style/TextTheme.Semi_Smaller">
 
                     </TextView>
 
@@ -196,7 +198,7 @@
 
                 <Space
                     android:layout_width="10dp"
-                    android:layout_height="wrap_content"></Space>
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -225,7 +227,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Wind"
-                        android:textSize="12sp">
+                        style="@style/TextTheme.Smaller">
 
                     </TextView>
 
@@ -234,7 +236,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5.30am"
-                        android:textSize="14sp">
+                        style="@style/TextTheme.Semi_Smaller">
 
                     </TextView>
 
@@ -282,7 +284,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pressure"
-                        android:textSize="12sp">
+                        style="@style/TextTheme.Smaller">
 
                     </TextView>
 
@@ -291,7 +293,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5.30am"
-                        android:textSize="14sp">
+                        style="@style/TextTheme.Semi_Smaller">
 
                     </TextView>
 
@@ -299,7 +301,7 @@
 
                 <Space
                     android:layout_width="10dp"
-                    android:layout_height="wrap_content"></Space>
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -328,7 +330,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Humidity"
-                        android:textSize="12sp">
+                        style="@style/TextTheme.Smaller">
 
                     </TextView>
 
@@ -337,7 +339,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5.30am"
-                        android:textSize="14sp">
+                        style="@style/TextTheme.Semi_Smaller">
 
                     </TextView>
 
@@ -345,7 +347,7 @@
 
                 <Space
                     android:layout_width="10dp"
-                    android:layout_height="wrap_content"></Space>
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -374,7 +376,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Custom"
-                        android:textSize="12sp">
+                        style="@style/TextTheme.Smaller">
 
                     </TextView>
 
@@ -383,7 +385,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Custom"
-                        android:textSize="14sp">
+                        style="@style/TextTheme.Semi_Smaller">
 
                     </TextView>
 

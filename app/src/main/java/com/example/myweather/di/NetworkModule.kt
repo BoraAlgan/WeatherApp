@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+//Retrofit istek atan bir yapı değildir. Retrofit, okhttp kullanarak içerine client alıp istekleri tetikler
 
 @Module
 @InstallIn(SingletonComponent::class)

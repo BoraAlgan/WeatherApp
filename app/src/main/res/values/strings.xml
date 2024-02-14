@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MyWeather</string>
     <string name="location">Location</string>
+    <string name="celcius_temp">%s C°</string>
+    <string name="min_temp">Min Temp: %s C°</string>
+    <string name="max_temp">Min Temp: %s C°</string>
 </resources>

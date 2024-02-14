@@ -10,7 +10,7 @@ class ApiKeyInterceptor : Interceptor{
 
         val url = request.url
             .newBuilder()
-            .addQueryParameter(APPID, "APPID")
+            .addQueryParameter(APPID, "{APPID}")
             .build()
 
         val requestBuilder = request.newBuilder()

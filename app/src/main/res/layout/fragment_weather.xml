@@ -51,20 +51,13 @@
                 style="@style/TextTheme.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Antalya">
-
-            </TextView>
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/weatherTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="17C°"
-                android:textSize="80sp">
-
-            </TextView>
+                android:layout_gravity="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,9 +73,7 @@
 
                 <Space
                     android:layout_width="50dp"
-                    android:layout_height="wrap_content">
-
-                </Space>
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/maxTemp"
@@ -121,38 +112,31 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/sunrise"
-                        app:tint="#FFF">
-
-                    </ImageView>
+                        app:tint="#FFF"/>
 
                     <Space
                         android:layout_width="wrap_content"
-                        android:layout_height="5dp">
+                        android:layout_height="5dp"/>
 
-                    </Space>
 
                     <TextView
                         style="@style/TextTheme.Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sunrise">
-
-                    </TextView>
-
+                        android:text="Sunrise"/>
                     <TextView
                         android:id="@+id/sunriseTime"
                         style="@style/TextTheme.Semi_Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.30am">
+                        android:text="5.30am"/>
 
-                    </TextView>
 
                 </LinearLayout>
 
                 <Space
                     android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -167,38 +151,30 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/sunset"
-                        app:tint="#FFF">
-
-                    </ImageView>
+                        app:tint="#FFF"/>
 
                     <Space
                         android:layout_width="wrap_content"
-                        android:layout_height="5dp">
-
-                    </Space>
+                        android:layout_height="5dp"/>
 
                     <TextView
                         style="@style/TextTheme.Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sunset">
-
-                    </TextView>
+                        android:text="Sunset"/>
 
                     <TextView
                         android:id="@+id/sunsetTime"
                         style="@style/TextTheme.Semi_Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.30am">
-
-                    </TextView>
+                        android:text="5.30am"/>
 
                 </LinearLayout>
 
                 <Space
                     android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -213,32 +189,24 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/wind"
-                        app:tint="#FFF">
-
-                    </ImageView>
+                        app:tint="#FFF"/>
 
                     <Space
                         android:layout_width="wrap_content"
-                        android:layout_height="5dp">
-
-                    </Space>
+                        android:layout_height="5dp"/>
 
                     <TextView
                         style="@style/TextTheme.Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Wind">
-
-                    </TextView>
+                        android:text="Wind"/>
 
                     <TextView
                         android:id="@+id/windTime"
                         style="@style/TextTheme.Semi_Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.30am">
-
-                    </TextView>
+                        android:text="5.30am"/>
 
                 </LinearLayout>
 
@@ -247,9 +215,7 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="10dp">
-
-            </Space>
+                android:layout_height="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -270,32 +236,24 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/pressure"
-                        app:tint="#FFF">
-
-                    </ImageView>
+                        app:tint="#FFF"/>
 
                     <Space
                         android:layout_width="wrap_content"
-                        android:layout_height="5dp">
-
-                    </Space>
+                        android:layout_height="5dp"/>
 
                     <TextView
                         style="@style/TextTheme.Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pressure">
-
-                    </TextView>
+                        android:text="Pressure"/>
 
                     <TextView
                         android:id="@+id/pressureTime"
                         style="@style/TextTheme.Semi_Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.30am">
-
-                    </TextView>
+                        android:text="5.30am"/>
 
                 </LinearLayout>
 
@@ -316,32 +274,24 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/humidity"
-                        app:tint="#FFF">
-
-                    </ImageView>
+                        app:tint="#FFF"/>
 
                     <Space
                         android:layout_width="wrap_content"
-                        android:layout_height="5dp">
-
-                    </Space>
+                        android:layout_height="5dp"/>
 
                     <TextView
                         style="@style/TextTheme.Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Humidity">
-
-                    </TextView>
+                        android:text="Humidity"/>
 
                     <TextView
                         android:id="@+id/humidityTime"
                         style="@style/TextTheme.Semi_Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5.30am">
-
-                    </TextView>
+                        android:text="5.30am"/>
 
                 </LinearLayout>
 
@@ -362,32 +312,24 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/info"
-                        app:tint="#FFF">
-
-                    </ImageView>
+                        app:tint="#FFF"/>
 
                     <Space
                         android:layout_width="wrap_content"
-                        android:layout_height="5dp">
-
-                    </Space>
+                        android:layout_height="5dp"/>
 
                     <TextView
                         style="@style/TextTheme.Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Custom">
-
-                    </TextView>
+                        android:text="Custom"/>
 
                     <TextView
                         android:id="@+id/customTime"
                         style="@style/TextTheme.Semi_Smaller"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Custom">
-
-                    </TextView>
+                        android:text="Custom"/>
 
                 </LinearLayout>
 

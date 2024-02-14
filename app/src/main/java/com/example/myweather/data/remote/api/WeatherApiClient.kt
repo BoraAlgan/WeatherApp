@@ -7,7 +7,8 @@ import retrofit2.http.Query
 interface WeatherApiClient {
     @GET("weather")
     suspend fun getWeather(
-        @Query("q") query: String?
+        @Query("q") query: String?,
+        @Query("units") units: String = "metric"
     ): WeatherResponseModel
 
     @GET("weather")

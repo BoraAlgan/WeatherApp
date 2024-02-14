@@ -20,8 +20,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.fetchWeatherData("İstanbul")
-        viewModel.fetchWeatherWithCordData(10.55, 10.7)
+//        viewModel.fetchWeatherData("İstanbul")
+//        viewModel.fetchWeatherWithCordData(10.55, 10.7)
+
+
+
+
+
 
         //bottom nav
         val navHost = binding.fragmentContainer.getFragment() as NavHost

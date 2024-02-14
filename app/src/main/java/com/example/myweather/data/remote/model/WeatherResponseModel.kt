@@ -57,7 +57,7 @@ data class Main(
     @SerializedName("sea_level")
     val seaLevel: Int,
     @SerializedName("temp")
-    val temp: Double,
+    var temp: Double,
     @SerializedName("temp_max")
     val tempMax: Double,
     @SerializedName("temp_min")
@@ -75,9 +75,9 @@ data class Sys(
     @SerializedName("id")
     val id: Int,
     @SerializedName("sunrise")
-    val sunrise: Int,
+    val sunrise: Long,
     @SerializedName("sunset")
-    val sunset: Int,
+    val sunset: Long,
     @SerializedName("type")
     val type: Int
 )

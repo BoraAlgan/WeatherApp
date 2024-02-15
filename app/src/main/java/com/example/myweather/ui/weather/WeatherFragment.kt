@@ -10,8 +10,10 @@ import com.example.myweather.R
 import com.example.myweather.databinding.FragmentWeatherBinding
 import com.example.myweather.extentions.capitalizeWords
 import com.example.myweather.extentions.epochToDateTime
+import com.example.myweather.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.roundToInt
+
 
 @AndroidEntryPoint
 class WeatherFragment : Fragment() {
@@ -35,12 +37,12 @@ class WeatherFragment : Fragment() {
         viewModel.liveData.observe(viewLifecycleOwner) {
 
             with(binding) {
-                weatherTemp.text =
-                    getString(R.string.celcius_temp, it.main.temp.roundToInt().toString())
+                weatherTemp.text = getString(R.string.celcius_temp, it.main.temp.roundToInt().toString())
                 minTemp.text = getString(R.string.min_temp, it.main.tempMin.roundToInt().toString())
                 maxTemp.text = getString(R.string.max_temp, it.main.tempMax.roundToInt().toString())
                 location.text = it.name
-                weatherStatus.text = it.weather.firstOrNull()?.description?.capitalizeWords() ?: "Clean Weather"
+                weatherStatus.text =
+                    it.weather.firstOrNull()?.description?.capitalizeWords() ?: "Clean Weather"
 
 
                 sunriseTime.text = it.sys.sunrise.epochToDateTime()
@@ -49,6 +51,7 @@ class WeatherFragment : Fragment() {
 
             }
 
+            (activity as MainActivity?)!!.supportActionBar!!.title = "Weather"
 
 
         }
@@ -56,4 +59,6 @@ class WeatherFragment : Fragment() {
         viewModel.fetchWeatherData("İstanbul")
 
     }
+
+
 }

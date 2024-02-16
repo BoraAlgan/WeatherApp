@@ -56,7 +56,7 @@ class WeatherFragment : Fragment() {
 
         }
 
-        viewModel.fetchWeatherData("İstanbul")
+        viewModel.fetchWeatherData("Edirne")
 
     }
 

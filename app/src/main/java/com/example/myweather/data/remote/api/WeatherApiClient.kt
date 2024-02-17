@@ -8,13 +8,14 @@ interface WeatherApiClient {
     @GET("weather")
     suspend fun getWeather(
         @Query("q") query: String?,
-        @Query("units") units: String = "metric"
+        @Query("units") units: String = "metric" // Celcius Birimi için
     ): WeatherResponseModel
 
     @GET("weather")
     suspend fun  getWeatherWithCord(
         @Query("lat") lat: Double?,
-        @Query("lon") lon: Double?
+        @Query("lon") lon: Double?,
+        @Query("units") units: String = "metric"
     ): WeatherResponseModel
 
 

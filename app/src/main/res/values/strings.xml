@@ -4,4 +4,6 @@
     <string name="celcius_temp">%s C°</string>
     <string name="min_temp">Min Temp: %s C°</string>
     <string name="max_temp">Min Temp: %s C°</string>
+    <string name="my_weather">MyWeather</string>
+    <string name="updated_time">Updated at: %s</string>
 </resources>

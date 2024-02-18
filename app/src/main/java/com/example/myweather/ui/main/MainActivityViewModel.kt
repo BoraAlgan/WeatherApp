@@ -32,12 +32,13 @@ class MainActivityViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    fun fetchWeatherWithCordData(lat: Double, lon: Double) {
+    fun fetchWeatherWithCordData(lat: Double, lon: Double,locationName: String) {
 
         useCase.fetchWeatherWithCordData(
             lat,
             lon,
             onSuccess = {
+                it.name = locationName
                 liveData.value = it
             },
             onFailure = {

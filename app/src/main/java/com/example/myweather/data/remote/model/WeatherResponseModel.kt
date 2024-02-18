@@ -18,7 +18,7 @@ data class WeatherResponseModel(
     @SerializedName("main")
     val main: Main,
     @SerializedName("name")
-    val name: String,
+    var name: String,
     @SerializedName("rain")
     val rain: Rain,
     @SerializedName("sys")

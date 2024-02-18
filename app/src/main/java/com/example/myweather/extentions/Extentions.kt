@@ -14,7 +14,7 @@ fun String.capitalizeWords(): String = split(" ").joinToString(" ") {
 
 fun Long.epochToDateTime(): String {
 
-    val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+    val dateFormat = SimpleDateFormat("HH.mm", Locale.getDefault())
     val millis = TimeUnit.SECONDS.toMillis(this)
     val date = Date(millis)
     return dateFormat.format(date)

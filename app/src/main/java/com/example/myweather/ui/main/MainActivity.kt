@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -16,8 +17,10 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.edit
 import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import androidx.core.location.LocationManagerCompat.isLocationEnabled
 import androidx.navigation.NavHost
@@ -26,13 +29,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myweather.R
 import com.example.myweather.databinding.ActivityMainBinding
+import com.example.myweather.databinding.CustomDialogAlertBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
-
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -41,6 +45,8 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainActivityViewModel by viewModels()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    @Inject
+    lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +76,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
 
         startLocationUpdates()
+
+        preferences.edit {
+            putString("city","Antalya")
+            commit()
+        }
+
+
+
     }
 
 
@@ -90,52 +104,56 @@ class MainActivity : AppCompatActivity() {
 
                     val locationTask: Task<Location> = fusedLocationClient.lastLocation
 
-                    locationTask.addOnSuccessListener { location ->
-                        Toast.makeText(this, "Location obtained :).", Toast.LENGTH_SHORT).show()
+                    locationTask
 
-                        val latitude = location.latitude
-                        val longitude = location.longitude
-                        println("" + latitude + "" + longitude)
+                        .addOnSuccessListener { location ->
+                            Toast.makeText(this, "Location obtained :).", Toast.LENGTH_SHORT).show()
+
+                            val latitude = location.latitude
+                            val longitude = location.longitude
+                            println("" + latitude + "" + longitude)
 
 
 
 
-                        if (Geocoder.isPresent()) {
-                            val geocoder = Geocoder(this, Locale.getDefault())
-                            val addresses: List<Address>? =
-                                geocoder.getFromLocation(latitude, longitude, 1)
+                            if (Geocoder.isPresent()) {
+                                val geocoder = Geocoder(this, Locale.getDefault())
+                                val addresses: List<Address>? =
+                                    geocoder.getFromLocation(latitude, longitude, 1)
 
-                            if (!addresses.isNullOrEmpty()) {
-                                val city = addresses[0].adminArea
-                                val country = addresses[0].countryName
-                                val postalCode = addresses[0].postalCode
+                                if (!addresses.isNullOrEmpty()) {
+                                    val city = addresses[0].adminArea
+                                    val country = addresses[0].countryName
+                                    val postalCode = addresses[0].postalCode
 
-                                viewModel.fetchWeatherWithCordData(
-                                    lat = latitude,
-                                    lon = longitude,
-                                    locationName = city
-                                )
+                                    viewModel.fetchWeatherWithCordData(
+                                        lat = latitude,
+                                        lon = longitude,
+                                        locationName = city
+                                    )
 
-                                println(city + country + postalCode)
+                                    println(city + country + postalCode)
+                                }
+                            } else {
+                                Toast.makeText(this, "Unknown location.", Toast.LENGTH_SHORT).show()
+
+                                //last
                             }
-                        } else {
-                            Toast.makeText(this, "Unknown location.", Toast.LENGTH_SHORT).show()
 
-                            //last
                         }
 
-                    }.addOnFailureListener { exception ->
+                        .addOnFailureListener { exception ->
 
-                        Toast.makeText(
-                            this,
-                            "Location could not be obtained. Please try again.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            Toast.makeText(
+                                this,
+                                "Location could not be obtained. Please try again.",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
-                        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                        startActivity(intent)
+                            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                            startActivity(intent)
 
-                    }
+                        }
 
                 } else {
                     Toast.makeText(this, "Turn on location.", Toast.LENGTH_SHORT).show()
@@ -148,6 +166,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "It needs to be allowed from the settings.", Toast.LENGTH_LONG).show()
                 // Kullanıcaya ayarlara git diyaloğu açılmalıdır. (Alert Dialog -> vazgeç, ayarlara git)
             }
+
             else -> {
                 Toast.makeText(this, "Lütfen izin verin", Toast.LENGTH_LONG).show()
                 requestPermissions(
@@ -168,12 +187,50 @@ class MainActivity : AppCompatActivity() {
     // ShouldShowRequestPermissionRationale -> istenen izin için ek diyalog açılması durumunu döner.
     private fun isPermissionRationale(permission: String) = ActivityCompat.shouldShowRequestPermissionRationale(this, permission)
 
+    private fun checkQuery() {
+        val city = getPreferences(CITY)
+        if (city==null) {
+            alertDialogBuilder()
+        } else {
+            viewModel.fetchWeatherData(city)
+        }
+    }
+    private fun alertDialogBuilder() {
+        val dialog = AlertDialog.Builder(this).create()
+        val dialogBinding = CustomDialogAlertBinding.inflate(layoutInflater, null, false)
+
+        with(dialogBinding) {
+            dialogButton.setOnClickListener {
+                val txt = cityEndpointer.text.toString()
+                putPreferences(txt)
+                viewModel.fetchWeatherData(txt)
+                dialog.dismiss()
+            }
+        }
+        dialog.setView(dialogBinding.root)
+        dialog.show()
+    }
+
+    private fun putPreferences(value: String) {
+        preferences.edit{
+            putString(CITY ,value )
+            commit()
+        }
+    }
+
+    private fun getPreferences(value: String) : String? {
+        return preferences.getString(value, null)
+        }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == LOCATION_REQUEST_CODE) {
             if (grantResults.contains(PackageManager.PERMISSION_DENIED)) {
                 Toast.makeText(this, "İzin verilmedi", Toast.LENGTH_LONG).show()
+
+                alertDialogBuilder()
+
             } else {
                 Toast.makeText(this, "İzinler verildi konum servisi kullanılmaya başlanıyor", Toast.LENGTH_LONG).show()
                 startLocationUpdates()
@@ -181,7 +238,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
+
+
+
     companion object {
         private val LOCATION_REQUEST_CODE = 100
+        private val CITY = "city"
     }
 }

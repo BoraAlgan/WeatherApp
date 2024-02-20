@@ -10,4 +10,5 @@
     <string name="no">No</string>
     <string name="dialog_hint_text">Bulunduğunuz konumu girin</string>
     <string name="devam">Devam</string>
+    <string name="edit_location">edit_location</string>
 </resources>

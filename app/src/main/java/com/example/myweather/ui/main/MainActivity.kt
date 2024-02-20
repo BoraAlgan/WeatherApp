@@ -14,6 +14,9 @@ import android.os.Bundle
 import android.os.FileObserver.ACCESS
 import android.os.Looper
 import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -77,13 +80,32 @@ class MainActivity : AppCompatActivity() {
 
         startLocationUpdates()
 
-        preferences.edit {
-            putString("city","Antalya")
-            commit()
+//        val customButton = binding.toolbar.findViewById<Button>(R.id.customButton)
+//        customButton.setOnClickListener {
+//            // Düğmeye tıklanınca yapılacak işlemleri burada tanımlayabilirsiniz
+//            Toast.makeText(this, "Özel Düğmeye Tıklandı", Toast.LENGTH_SHORT).show()
+//        }
+
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.editLocation -> {
+
+                alertDialogBuilder()
+
+                Toast.makeText(this, "Choose the location you wanted", Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
         }
-
-
-
     }
 
 
@@ -137,21 +159,18 @@ class MainActivity : AppCompatActivity() {
                             } else {
                                 Toast.makeText(this, "Unknown location.", Toast.LENGTH_SHORT).show()
 
-                                //last
+                                //last ( geocoder datasına ulaşılamadığı zaman)
                             }
 
                         }
 
                         .addOnFailureListener { exception ->
-
+                            //lat lon değerini alamadığımız case
                             Toast.makeText(
                                 this,
                                 "Location could not be obtained. Please try again.",
                                 Toast.LENGTH_SHORT
                             ).show()
-
-                            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                            startActivity(intent)
 
                         }
 
@@ -164,7 +183,9 @@ class MainActivity : AppCompatActivity() {
 
             isPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) && isPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) -> {
                 Toast.makeText(this, "It needs to be allowed from the settings.", Toast.LENGTH_LONG).show()
-                // Kullanıcaya ayarlara git diyaloğu açılmalıdır. (Alert Dialog -> vazgeç, ayarlara git)
+                checkQuery()
+
+
             }
 
             else -> {
@@ -189,12 +210,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkQuery() {
         val city = getPreferences(CITY)
-        if (city==null) {
+        if (city == null) {
             alertDialogBuilder()
         } else {
             viewModel.fetchWeatherData(city)
         }
     }
+
     private fun alertDialogBuilder() {
         val dialog = AlertDialog.Builder(this).create()
         val dialogBinding = CustomDialogAlertBinding.inflate(layoutInflater, null, false)
@@ -212,15 +234,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun putPreferences(value: String) {
-        preferences.edit{
-            putString(CITY ,value )
-            commit()
+        preferences.edit {
+            putString(CITY, value)
         }
     }
 
-    private fun getPreferences(value: String) : String? {
+    private fun getPreferences(value: String): String? {
         return preferences.getString(value, null)
-        }
+    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -229,7 +250,7 @@ class MainActivity : AppCompatActivity() {
             if (grantResults.contains(PackageManager.PERMISSION_DENIED)) {
                 Toast.makeText(this, "İzin verilmedi", Toast.LENGTH_LONG).show()
 
-                alertDialogBuilder()
+                checkQuery()
 
             } else {
                 Toast.makeText(this, "İzinler verildi konum servisi kullanılmaya başlanıyor", Toast.LENGTH_LONG).show()
@@ -237,11 +258,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
-
-
 
     companion object {
         private val LOCATION_REQUEST_CODE = 100

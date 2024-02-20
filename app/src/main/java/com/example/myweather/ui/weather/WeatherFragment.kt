@@ -41,11 +41,6 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val time = Calendar.getInstance().time
-        val formatter = SimpleDateFormat("HH.mm - dd.MM.yyyy")
-        val current = formatter.format(time)
-
-
         activityViewModel.liveData.observe(viewLifecycleOwner) {
             with(binding) {
                 weatherTemp.text = getString(R.string.celcius_temp, it.main.temp.roundToInt().toString())
@@ -53,7 +48,7 @@ class WeatherFragment : Fragment() {
                 maxTemp.text = getString(R.string.max_temp, it.main.tempMax.roundToInt().toString())
                 location.text = it.name
                 weatherStatus.text = it.weather.firstOrNull()?.description?.capitalizeWords() ?: "Clean Weather"
-                text2.text = getString(R.string.updated_time, current)
+                text2.text = getString(R.string.updated_time, updatedTime())
 
 
                 sunriseTime.text = it.sys.sunrise.epochToDateTime()
@@ -62,7 +57,17 @@ class WeatherFragment : Fragment() {
                 pressureTime.text = it.main.pressure.toString()
                 humidityTime.text = it.main.humidity.toString()
                 customTime.text = it.main.seaLevel.toString()
+
             }
         }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun updatedTime(): String {
+        val time = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("HH.mm - dd.MM.yyyy")
+        val current = formatter.format(time)
+
+        return current
     }
 }

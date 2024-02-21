@@ -31,6 +31,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myweather.R
+import com.example.myweather.data.locale.LocationDataBase
+import com.example.myweather.data.locale.SavedLocations
 import com.example.myweather.databinding.ActivityMainBinding
 import com.example.myweather.databinding.CustomDialogAlertBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -80,13 +82,24 @@ class MainActivity : AppCompatActivity() {
 
         startLocationUpdates()
 
-//        val customButton = binding.toolbar.findViewById<Button>(R.id.customButton)
-//        customButton.setOnClickListener {
-//            // Düğmeye tıklanınca yapılacak işlemleri burada tanımlayabilirsiniz
-//            Toast.makeText(this, "Özel Düğmeye Tıklandı", Toast.LENGTH_SHORT).show()
-//        }
+        addDataToDatabase()
 
 
+    }
+
+    fun addDataToDatabase() {
+        val db = LocationDataBase.getLocationDatabase(this)
+        val dao = db?.locationDao()
+        dao?.insert(
+            SavedLocations(
+                savedLocationName = "Antalya"
+            )
+        )
+        dao?.insert(
+            SavedLocations(
+                savedLocationName = "İstanbul"
+            )
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class WeatherRepository @Inject constructor(
+class WeatherRemoteRepository @Inject constructor(
     private val serviceWeather: WeatherApiClient
 ){
 

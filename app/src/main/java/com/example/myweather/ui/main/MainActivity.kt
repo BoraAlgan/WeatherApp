@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.weatherFragment,
                 R.id.windFragment,
-                R.id.rainandcloudFragment
             )
         )
 
@@ -82,25 +81,25 @@ class MainActivity : AppCompatActivity() {
 
         startLocationUpdates()
 
-        addDataToDatabase()
+//        addDataToDatabase()
 
 
     }
 
-    fun addDataToDatabase() {
-        val db = LocationDataBase.getLocationDatabase(this)
-        val dao = db?.locationDao()
-        dao?.insert(
-            SavedLocations(
-                savedLocationName = "Antalya"
-            )
-        )
-        dao?.insert(
-            SavedLocations(
-                savedLocationName = "İstanbul"
-            )
-        )
-    }
+//    fun addDataToDatabase() {
+//        val db =
+//        val dao = db?.locationDao()
+//        dao?.insert(
+//            SavedLocations(
+//                savedLocationName = "Antalya"
+//            )
+//        )
+//        dao?.insert(
+//            SavedLocations(
+//                savedLocationName = "İstanbul"
+//            )
+//        )
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)

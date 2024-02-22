@@ -5,20 +5,11 @@
     <item
         android:id="@+id/weatherFragment"
         android:icon="@drawable/sunrise"
-        android:title="Weather" />
-    <!--    <item-->
-    <!--        android:id="@+id/item_weather"-->
-    <!--        android:icon="@drawable/sunrise"-->
-    <!--        android:title="WEATHER"-->
-    <!--        app:showAsAction="always"/>-->
+        android:title="@string/weather" />
 
     <item
         android:id="@+id/windFragment"
-        android:icon="@drawable/wind"
-        android:title="Wind" />
-    <item
-        android:id="@+id/rainandcloudFragment"
-        android:icon="@drawable/humidity"
-        android:title="Rain and Cloud" />
+        android:icon="@drawable/ic_add_menu_location"
+        android:title="@string/my_locations" />
 
 </menu>

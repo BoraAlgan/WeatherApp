@@ -12,9 +12,7 @@ import com.example.myweather.R
 import com.example.myweather.databinding.FragmentWeatherBinding
 import com.example.myweather.extentions.capitalizeWords
 import com.example.myweather.extentions.epochToDateTime
-import com.example.myweather.ui.main.MainActivity
 import com.example.myweather.ui.main.MainActivityViewModel
-import com.example.myweather.ui.rainCloud.RainAndCloudViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar

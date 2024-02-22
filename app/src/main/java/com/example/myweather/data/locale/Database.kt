@@ -9,23 +9,4 @@ import androidx.room.RoomDatabase
 abstract class LocationDataBase : RoomDatabase() {
     abstract fun locationDao(): LocationDAO
 
-    companion object {
-        private var instance: LocationDataBase? = null
-
-        fun getLocationDatabase(context: Context): LocationDataBase? {
-
-            if (instance == null) {
-                instance = Room.databaseBuilder(
-                    context,
-                    LocationDataBase::class.java,
-                    "location.db"
-                ).build()
-            }
-
-
-
-            return instance
-        }
-    }
-
 }

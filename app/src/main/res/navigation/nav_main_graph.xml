@@ -13,15 +13,8 @@
 
     <fragment
         android:id="@+id/windFragment"
-        android:name="com.example.myweather.ui.wind.WindFragment"
-        tools:layout="@layout/fragment_wind"
+        android:name="com.example.myweather.ui.location.LocationFragment"
+        tools:layout="@layout/fragment_location"
         android:label="Wind"/>
-
-    <fragment
-        android:id="@+id/rainandcloudFragment"
-        android:name="com.example.myweather.ui.rainCloud.RainAndCloudFragment"
-        tools:layout="@layout/fragment_rain_and_cloud"
-        android:label="Rain and Clouds"/>
-
 
 </navigation>

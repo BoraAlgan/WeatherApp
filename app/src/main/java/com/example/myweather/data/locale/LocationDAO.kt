@@ -7,12 +7,11 @@ import androidx.room.Query
 @Dao
 interface LocationDAO {
     @Insert
-    fun insert (location: SavedLocations)
+    suspend fun insert (location: SavedLocations)
 
     @Delete
-    fun delete (locations: SavedLocations)
+    suspend fun delete (locations: SavedLocations)
 
-
-//    @Query()
-//    fun getAll()
+    @Query("SELECT * FROM location")
+    suspend fun getAll() : List<SavedLocations>
 }

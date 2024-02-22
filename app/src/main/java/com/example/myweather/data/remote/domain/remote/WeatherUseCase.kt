@@ -1,6 +1,6 @@
-package com.example.myweather.data.remote.domain
+package com.example.myweather.data.remote.domain.remote
 
-import com.example.myweather.data.WeatherRepository
+import com.example.myweather.data.WeatherRemoteRepository
 import com.example.myweather.data.remote.model.WeatherResponseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class WeatherUseCase @Inject constructor(
 
-    private val repository: WeatherRepository
+    private val repository: WeatherRemoteRepository
 ) {
     fun fetchWeatherData(
         query: String,

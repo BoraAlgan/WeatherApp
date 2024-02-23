@@ -1,6 +1,4 @@
-import androidx.lifecycle.SavedStateHandle
-
-List<SavedLocations>package com.example.myweather.ui.location
+package com.example.myweather.ui.location
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,8 +39,15 @@ class LocationViewModel @Inject constructor(
 
     }
 
-    fun deleteUseCase(location: SavedLocations) {
-
+    fun deleteLocation(location: SavedLocations) {
+        deleteUseCase.deleteData(
+            locations = location,
+            onFailure = {},
+            onSuccess = {
+                getAllLocations()
+            }
+        )
+            .launchIn(viewModelScope)
     }
 
 }

@@ -19,13 +19,17 @@ class DeleteUseCase @Inject constructor(
 
     fun deleteData(
         locations: SavedLocations,
-        onFailure: (String) -> Unit
-    ): Flow<Unit> {
+        onFailure: (String) -> Unit,
+        onSuccess: () -> Unit
+    ): Flow<Boolean> {
 
         return repository.deleteLocation(locations)
             .flowOn(Dispatchers.IO)
             .catch {
                 onFailure(it.message.toString())
+            }
+            .onEach {
+                onSuccess()
             }
     }
 

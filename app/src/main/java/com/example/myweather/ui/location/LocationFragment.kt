@@ -1,6 +1,5 @@
 package com.example.myweather.ui.location
 
-import LocationViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,14 +27,20 @@ class LocationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getAllLocations()
+
         viewModel.locationsList.observe(viewLifecycleOwner) { list ->
             val adapter = LocationAdapter(
                 list = list,
-                onCardClick = {},
-                onDeleteClick = {
-                    viewModel.deleteUseCase(it)
+                onCardClick = {
+
+                },
+                onDeleteClick = { location ->
+                    viewModel.deleteLocation(location)
                 }
             )
+
+            binding.rvLocation.adapter = adapter
         }
 
     }

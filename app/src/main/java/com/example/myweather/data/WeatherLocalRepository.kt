@@ -21,10 +21,11 @@ class WeatherLocalRepository @Inject constructor(
 
     }
 
-    fun deleteLocation(location: SavedLocations): Flow<Unit> {
+    fun deleteLocation(location: SavedLocations): Flow<Boolean> {
 
         return flow {
             locationDAO.delete(location)
+            emit(true)
         }
 
     }

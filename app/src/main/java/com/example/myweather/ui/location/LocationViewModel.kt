@@ -35,7 +35,15 @@ class LocationViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    fun insertUseCase() {
+    fun insertUseCase(location: SavedLocations) {
+        insertUseCase.insertData(
+            locations = location,
+            onFailure = {},
+            onSuccess = {
+                getAllLocations()
+            }
+        )
+            .launchIn(viewModelScope)
 
     }
 

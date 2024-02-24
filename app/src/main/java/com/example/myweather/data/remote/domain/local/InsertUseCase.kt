@@ -19,13 +19,17 @@ class InsertUseCase @Inject constructor(
 
     fun insertData(
         locations: SavedLocations,
-        onFailure: (String) -> Unit
-    ): Flow<Unit> {
+        onFailure: (String) -> Unit,
+        onSuccess: () -> Unit
+    ): Flow<Boolean> {
 
         return repository.insertLocation(locations)
             .flowOn(Dispatchers.IO)
             .catch {
                 onFailure(it.message.toString())
+            }
+            .onEach {
+                onSuccess()
             }
     }
 

@@ -16,35 +16,5 @@ class MainActivityViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<WeatherResponseModel>()
 
-    fun fetchWeatherData(query: String) {
-
-        useCase.fetchWeatherData(
-            query,
-            onSuccess = {
-                liveData.value = it
-            },
-            onFailure = {
-                println("HATA $it")
-            }
-        )
-            .launchIn(viewModelScope)
-    }
-
-    fun fetchWeatherWithCordData(lat: Double, lon: Double,locationName: String) {
-
-        useCase.fetchWeatherWithCordData(
-            lat,
-            lon,
-            onSuccess = {
-                it.name = locationName
-                liveData.value = it
-            },
-            onFailure = {
-                println("HATA $it")
-            }
-        )
-            .launchIn(viewModelScope)
-    }
 }

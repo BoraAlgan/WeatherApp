@@ -13,10 +13,11 @@ class WeatherLocalRepository @Inject constructor(
 
 
 
-    fun insertLocation(location: SavedLocations): Flow<Unit> {
+    fun insertLocation(location: SavedLocations): Flow<Boolean> {
 
         return flow {
             locationDAO.insert(location)
+            emit(true)
         }
 
     }

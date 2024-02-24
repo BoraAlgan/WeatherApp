@@ -87,6 +87,11 @@ class WeatherFragment : Fragment() {
 
             }
         }
+
+        viewModel.toastMessage.observe(viewLifecycleOwner) {
+
+//            Toast.makeText(requireContext(),"Please enter a valid location.", Toast.LENGTH_SHORT).show()
+        }
         startLocationUpdates()
 
     }
@@ -139,9 +144,8 @@ class WeatherFragment : Fragment() {
     private fun updatedTime(): String {
         val time = Calendar.getInstance().time
         val formatter = SimpleDateFormat("HH.mm - dd.MM.yyyy")
-        val current = formatter.format(time)
 
-        return current
+        return formatter.format(time)
     }
 
     private fun isLocationAvailable(context: Context): Boolean {
@@ -217,10 +221,7 @@ class WeatherFragment : Fragment() {
             }
 
             isPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) && isPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) -> {
-                Toast.makeText(requireContext(), "It needs to be allowed from the settings.", Toast.LENGTH_LONG).show()
                 checkQuery()
-
-
             }
 
             else -> {

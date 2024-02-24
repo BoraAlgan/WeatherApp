@@ -17,6 +17,7 @@ class WeatherViewModel @Inject constructor(
     ) : ViewModel() {
 
     val liveData = MutableLiveData<WeatherResponseModel>()
+    val toastMessage = MutableLiveData<String>()
 
     fun fetchWeatherData(query: String) {
 
@@ -26,7 +27,7 @@ class WeatherViewModel @Inject constructor(
                 liveData.value = it
             },
             onFailure = {
-                println("HATA $it")
+                toastMessage.value = it
             }
         )
             .launchIn(viewModelScope)

@@ -23,6 +23,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.edit
 import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import androidx.core.location.LocationManagerCompat.isLocationEnabled
@@ -75,8 +76,12 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appConfiguration)
 
 
+    }
 
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        this.intent = intent
     }
 
 }

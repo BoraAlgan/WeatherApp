@@ -1,6 +1,7 @@
 package com.example.myweather.ui.location
 
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
@@ -20,6 +22,7 @@ import com.example.myweather.databinding.CustomDialogAlertBinding
 import com.example.myweather.databinding.FragmentLocationBinding
 import com.example.myweather.ui.location.adapter.LocationAdapter
 import com.example.myweather.ui.weather.WeatherFragment
+import com.example.myweather.util.NotificationUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -69,6 +72,7 @@ class LocationFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun alertDialogBuilder() {
         val dialog = AlertDialog.Builder(requireContext()).create()
         val dialogBinding = CustomDialogAlertBinding.inflate(layoutInflater, null, false)
@@ -80,6 +84,7 @@ class LocationFragment : Fragment() {
                     SavedLocations(savedLocationName = txt)
                 )
                 dialog.dismiss()
+                NotificationUtil().createNotification(requireContext(), "31", "LocationObserve")
             }
         }
         dialog.setView(dialogBinding.root)
@@ -96,6 +101,7 @@ class LocationFragment : Fragment() {
         inflater.inflate(R.menu.menu_location_toolbar, menu)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.addLocation -> {
@@ -108,6 +114,8 @@ class LocationFragment : Fragment() {
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
+
     companion object {
         private val CITY = "city"
     }

@@ -2,6 +2,7 @@ package com.example.myweather.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -20,7 +21,7 @@ class NotificationUtil {
 
         val contentIntent = Intent(context, MainActivity::class.java)
         contentIntent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-//        val contentPendingIntent = PendingIntent.getActivity(context,0,contentIntent,PendingIntent.FLAG_IMMUTABLE)
+        val contentPendingIntent = PendingIntent.getActivity(context,0,contentIntent,PendingIntent.FLAG_IMMUTABLE)
 
 
         val builder = NotificationCompat.Builder(context, channelId)
@@ -28,7 +29,7 @@ class NotificationUtil {
             .setContentText("Konum eklemek için sağ üstteki buttonu kullanın!")
             .setSmallIcon(R.drawable.ic_add_location)
             .setAutoCancel(true)
-//            .setContentIntent(contentPendingIntent)
+            .setContentIntent(contentPendingIntent)
 
         val notification = builder.build()
 

@@ -1,9 +1,7 @@
-package com.example.myweather.data.remote.domain.local
+package com.example.myweather.data.locale.domain
 
 import com.example.myweather.data.WeatherLocalRepository
-import com.example.myweather.data.WeatherRemoteRepository
 import com.example.myweather.data.locale.SavedLocations
-import com.example.myweather.data.remote.model.WeatherResponseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

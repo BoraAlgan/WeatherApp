@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myweather.data.locale.SavedLocations
-import com.example.myweather.data.remote.domain.local.DeleteUseCase
-import com.example.myweather.data.remote.domain.local.GetAllUseCase
-import com.example.myweather.data.remote.domain.local.InsertUseCase
+import com.example.myweather.data.locale.domain.DeleteUseCase
+import com.example.myweather.data.locale.domain.GetAllUseCase
+import com.example.myweather.data.locale.domain.InsertUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import javax.inject.Inject

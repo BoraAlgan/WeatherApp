@@ -228,8 +228,7 @@ class WeatherFragment : Fragment() {
                 Toast.makeText(requireContext(), "Lütfen izin verin", Toast.LENGTH_LONG).show()
                 requestPermissions(
                     arrayOf(
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
+
                     ),
                     LOCATION_REQUEST_CODE
                 )
